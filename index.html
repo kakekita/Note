@@ -50,16 +50,16 @@
       
       function load() {
         if(!(file_sel.value)) return; // ファイルが選択されない場合
-        let file_list=file_sel.files;
+        var file_list=file_sel.files;
         if(!file_list) return; // ファイルリストが選択されない場合
-        let file=file_list[0];
+        var file=file_list[0];
         if(!file) return; // ファイルが無い場合
 
-        let file_reader=new FileReader();
+        var file_reader=new FileReader();
         file_reader.readAsText(file);
         file_reader.onload=function(){
           data = JSON.parse(file_reader.result);
-          let write_json=JSON.stringify(data);
+          var write_json=JSON.stringify(data);
           localStorage.setItem('id_back', write_json);
           location.reload();
 	        alert(data);
