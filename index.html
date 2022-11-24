@@ -14,6 +14,7 @@
     </style>
   </head>
   <body>
+    <input type="file" id="file_Select">
     <div id="wrapper">
       <canvas id="mainCVS"></canvas>
     </div>
@@ -21,8 +22,49 @@
       var mc = document.getElementById("mainCVS");
       var ct = mc.getContext('2d');
       var wr = document.getElementById("wrapper");
+      var file = document.getElementById("file_Select");
       mc.width = wr.offsetWidth;
       mc.height =  wr.offsetHeight;
+      var data = null;
+      
+      document.body.addEventListener('keydown', function(e) {
+        if(event.ctrlKey) {
+          if(event.code === "KeyS"){
+            
+          }
+        }
+      },false);
+      
+      file.addEventListener("change", load());
+      
+      function save() {
+        let write_json=JSON.stringify(data);
+        let blob=new Blob([write_json], {type: 'application/json'});
+        let a=document.createElement("a");
+        a.href=URL.createObjectURL(blob);
+        var name = prompt("ファイル名","");
+        a.download = name+'.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+      
+      function load() {
+        if(!(button2.value)) return; // ファイルが選択されない場合
+        let file_list=button2.files;
+        if(!file_list) return; // ファイルリストが選択されない場合
+        let file=file_list[0];
+        if(!file) return; // ファイルが無い場合
+
+        let file_reader=new FileReader();
+        file_reader.readAsText(file);
+        file_reader.onload=function(){
+          data = JSON.parse(file_reader.result);
+          let write_json=JSON.stringify(data);
+          localStorage.setItem('id_back', write_json);
+          location.reload();
+        };
+        
+      }
     </script>
   </body>
 </html>
