@@ -54,15 +54,16 @@
         if(!file_list) return; // ファイルリストが選択されない場合
         var file=file_list[0];
         if(!file) return; // ファイルが無い場合
-
+        
         var file_reader=new FileReader();
         file_reader.readAsText(file);
         file_reader.onload=function(){
           data = JSON.parse(file_reader.result);
-          var write_json=JSON.stringify(data);
-          localStorage.setItem('id_back', write_json);
-          location.reload();
-	  alert(data);
+          //var write_json=JSON.stringify(data);
+          //localStorage.setItem('id_back', write_json);
+          //location.reload();
+	        alert(data);
+          save();
         };
         
       }
