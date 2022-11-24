@@ -22,7 +22,7 @@
       var mc = document.getElementById("mainCVS");
       var ct = mc.getContext('2d');
       var wr = document.getElementById("wrapper");
-      var file = document.getElementById("file_Select");
+      var file_sel = document.getElementById("file_Select");
       mc.width = wr.offsetWidth;
       mc.height =  wr.offsetHeight;
       var data = null;
@@ -35,7 +35,7 @@
         }
       },false);
       
-      file.addEventListener("change", load());
+      file_sel.addEventListener("change", load());
       
       function save() {
         let write_json=JSON.stringify(data);
@@ -49,8 +49,8 @@
       }
       
       function load() {
-        if(!(file.value)) return; // ファイルが選択されない場合
-        let file_list=file.files;
+        if(!(file_sel.value)) return; // ファイルが選択されない場合
+        let file_list=file_sel.files;
         if(!file_list) return; // ファイルリストが選択されない場合
         let file=file_list[0];
         if(!file) return; // ファイルが無い場合
@@ -62,7 +62,7 @@
           let write_json=JSON.stringify(data);
           localStorage.setItem('id_back', write_json);
           location.reload();
-		      alert(data);
+	        alert(data);
         };
         
       }
