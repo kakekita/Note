@@ -30,7 +30,7 @@
       document.body.addEventListener('keydown', function(e) {
         if(event.ctrlKey) {
           if(event.code === "KeyS"){
-            
+            save();
           }
         }
       },false);
@@ -62,9 +62,28 @@
           //var write_json=JSON.stringify(data);
           //localStorage.setItem('id_back', write_json);
           //location.reload();
-	        alert(data);
-          save();
+          drawCanvas();
         };
+        
+        function drawCanvas() {
+          var keys = Object.Keys(data);
+          for(var k in keys) {
+            var d = data[keys[k]];
+            var text = d["text"];
+            var txw = ct.measureText(text);
+            /*先に背景ボックスを描画*/
+            ct.fillStyle = '#008C22';
+            ct.fillRect(340-txw.width/2,120,txw.width,20);
+            /*あんまりピッタリでもアレなので、5pxの線の四角形で囲んでみた*/
+            ct.strokeStyle = '#008C22';
+            ct.lineWidth = 5;
+            ct.strokeRect(340-txw.width/2,120,txw.width,20);
+            /*テキストを描画*/
+            ct.fillStyle = '#fff';
+            ct.textBaseline = 'middle';
+            ct.fillText(text,340,130);
+          }
+        }
         
       }
     </script>
