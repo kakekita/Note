@@ -68,9 +68,8 @@
         };
         
         function drawCanvas() {
-          var keys = Object.Keys(data);
-          for(var k in keys) {
-            var d = data[keys[k]];
+          for(var k in data) {
+            var d = data[k];
             var text = d["text"];
             var txw = ct.measureText(text);
             /*先に背景ボックスを描画*/
