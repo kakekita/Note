@@ -29,8 +29,10 @@
       
       document.body.addEventListener('keydown', function(e) {
         if(event.ctrlKey) {
-          if(event.code === "KeyS"){
-            save();
+          if(event.shiftKey) {
+            if(event.code === "KeyS"){
+              save();
+            }
           }
         }
       },false);
