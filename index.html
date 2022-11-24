@@ -74,15 +74,15 @@
             var txw = ct.measureText(text);
             /*先に背景ボックスを描画*/
             ct.fillStyle = '#008C22';
-            ct.fillRect(340-txw.width/2,120,txw.width,20);
+            ct.fillRect(parseInt(d["x"])-txw.width/2,parseInt(d["y"]),txw.width,20);
             /*あんまりピッタリでもアレなので、5pxの線の四角形で囲んでみた*/
             ct.strokeStyle = '#008C22';
             ct.lineWidth = 5;
-            ct.strokeRect(340-txw.width/2,120,txw.width,20);
+            ct.strokeRect(parseInt(d["x"])-txw.width/2,parseInt(d["y"]),txw.width,20);
             /*テキストを描画*/
             ct.fillStyle = '#fff';
             ct.textBaseline = 'middle';
-            ct.fillText(text,340,130);
+            ct.fillText(text,parseInt(d["x"]),parseInt(d["y"]));
           }
         }
         
