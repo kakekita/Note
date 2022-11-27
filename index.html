@@ -16,15 +16,11 @@
   <body>
     <input type="file" id="file_Select">
     <div id="wrapper">
-      <canvas id="mainCVS"></canvas>
+      
     </div>
     <script>
-      var mc = document.getElementById("mainCVS");
-      var ct = mc.getContext('2d');
       var wr = document.getElementById("wrapper");
       var file_sel = document.getElementById("file_Select");
-      mc.width = wr.offsetWidth;
-      mc.height =  wr.offsetHeight;
       var data = null;
       
       document.body.addEventListener('keydown', function(e) {
@@ -64,28 +60,25 @@
           //var write_json=JSON.stringify(data);
           //localStorage.setItem('id_back', write_json);
           //location.reload();
-          drawCanvas();
+          drawTexts();
         };
+      }
         
-        function drawCanvas() {
-          for(var k in data) {
-            var d = data[k];
-            var text = d["text"];
-            var txw = ct.measureText(text);
-            /*先に背景ボックスを描画*/
-            ct.fillStyle = '#008C22';
-            ct.fillRect(parseInt(d["x"])-txw.width/2,parseInt(d["y"]),txw.width,20);
-            /*あんまりピッタリでもアレなので、5pxの線の四角形で囲んでみた*/
-            ct.strokeStyle = '#008C22';
-            ct.lineWidth = 5;
-            ct.strokeRect(parseInt(d["x"])-txw.width/2,parseInt(d["y"]),txw.width,20);
-            /*テキストを描画*/
-            ct.fillStyle = '#fff';
-            ct.textBaseline = 'middle';
-            ct.fillText(text,parseInt(d["x"]),parseInt(d["y"]));
-          }
+      
+      function drawTexts() {
+        for(var d in data) {
+          var text_1 = d["text"];
+          var x_1 = d["x"];
+          var y_1 = d["y"];
+          var id_1 = d["id"];
+          var ele = document.createElement("textarea");
+          ele.id = id_1;
+          ele.value = text_1;
+          ele.style.left = x_1;
+          ele.style.top = y_1;
+          
+          wr.append(ele);
         }
-        
       }
     </script>
   </body>
