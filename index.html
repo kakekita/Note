@@ -67,10 +67,10 @@
       
       function drawTexts() {
         for(var d in data) {
-          var text_1 = d["text"];
-          var x_1 = d["x"];
-          var y_1 = d["y"];
-          var id_1 = d["id"];
+          var text_1 = data[d]["text"];
+          var x_1 = data[d]["x"];
+          var y_1 = data[d]["y"];
+          var id_1 = data[d]["id"];
           var ele = document.createElement("textarea");
           ele.id = id_1;
           ele.value = text_1;
