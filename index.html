@@ -21,13 +21,12 @@
   </head>
   <body>
     <input type="file" id="file_Select">
-    <textarea id="textarea"></textarea>
-    <div id="wrapper">
-      
-    </div>
+    <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw">決定</button>
+    <div id="wrapper"></div>
     <script>
       var wr = document.getElementById("wrapper");
       var file_sel = document.getElementById("file_Select");
+      var ta = document.getElementById("textarea");
       var data = null;
       
       document.body.addEventListener('keydown', function(e) {
@@ -43,8 +42,18 @@
       file_sel.addEventListener("change", load);
       
       function save() {
+        /*
         let write_json=JSON.stringify(data);
         let blob=new Blob([write_json], {type: 'application/json'});
+        let a=document.createElement("a");
+        a.href=URL.createObjectURL(blob);
+        var name = prompt("ファイル名","");
+        a.download = name+'.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        */
+        
+        let blob=new Blob([wr.innerHTML], {type: 'text/plain'});
         let a=document.createElement("a");
         a.href=URL.createObjectURL(blob);
         var name = prompt("ファイル名","");
@@ -63,11 +72,9 @@
         var file_reader=new FileReader();
         file_reader.readAsText(file);
         file_reader.onload=function(){
-          data = JSON.parse(file_reader.result);
-          //var write_json=JSON.stringify(data);
-          //localStorage.setItem('id_back', write_json);
-          //location.reload();
-          drawTexts();
+          //data = JSON.parse(file_reader.result);
+          wr.innerHTML = file_reader.result;
+          //drawTexts();
         };
       }
         
