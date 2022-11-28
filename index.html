@@ -136,12 +136,12 @@
             //要素内の相対座標を取得
             x = event.pageX - this.offsetLeft;
             y = event.pageY - this.offsetTop;
-
+            alert(String(x)+","+String(y));
             //ムーブイベントにコールバック
             wr.addEventListener("mousemove", mmove, false);
             wr.addEventListener("touchmove", mmove, false);
           
-            alert(x+","+y);
+            
         }
 
         //マウスカーソルが動いたときに発火
