@@ -25,11 +25,40 @@
         zoom: 100%;
       }
       
+      .ex2{
+          display: flex;
+      }
+      .ex2 label{
+          display: block;
+          width: 150px;
+          background: #c8eac3;
+          color: #000;
+          padding: 10px;
+          margin: 10px;
+          box-sizing: border-box;
+          text-align: center;
+          text-decoration: none;
+          border-radius: 30px;
+          cursor: pointer;
+      }
+      .ex2 input:checked+label{
+          background: #1a720d;
+          color: #FFF;
+      }
+      .ex2 input{
+          display: none;
+      }
+      
     </style>
   </head>
   <body>
     <input type="file" id="file_Select">
     <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw" onclick="addTexts()">決定</button>
+    <div class="ex2">
+      <input type="radio" checked id="11" name="ex3"><label for="11">文字</label>
+      <input type="radio" id="12" name="ex3"><label for="12">背景</label>
+      <input type="radio" id="13" name="ex3"><label for="13">枠線</label>
+    </div>
     <div id="wrapper">
       
     </div>
