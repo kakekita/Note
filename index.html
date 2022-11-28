@@ -103,9 +103,11 @@
         wr.append(ele);
         
         alert(t);
+        
+        moveSettings();
       }
       
-      (function(){
+      function moveSettings(){
 
         //要素の取得
         var elements = document.getElementsByClassName("drag-and-drop");
@@ -186,7 +188,7 @@
             drag.classList.remove("drag");
         }
 
-      })()
+      }
       
       function disableScroll(event) {
         event.preventDefault();
