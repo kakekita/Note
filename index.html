@@ -17,6 +17,10 @@
       .drag {
         z-index: 1001;
       }
+      html,body{
+        overflow: hidden
+      }
+
     </style>
   </head>
   <body>
@@ -177,7 +181,14 @@
             drag.classList.remove("drag");
         }
 
-    })()
+      })()
+      
+      function disableScroll(event) {
+        event.preventDefault();
+      }
+
+      // イベントと関数を紐付け
+      document.addEventListener('touchmove', disableScroll, { passive: false });
     </script>
   </body>
 </html>
