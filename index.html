@@ -20,10 +20,6 @@
         z-index: 1001;
       }
       
-      .ln {
-        display: block;
-      }
-      
       html, body {
         overflow: hidden;
         zoom: 100%;
@@ -144,6 +140,8 @@
             //ムーブイベントにコールバック
             wr.addEventListener("mousemove", mmove, false);
             wr.addEventListener("touchmove", mmove, false);
+          
+            alert(x+","+y);
         }
 
         //マウスカーソルが動いたときに発火
