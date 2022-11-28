@@ -89,33 +89,14 @@
         //ele.style.position = "absolute";
         ele.id = String(wr.childElementCount);
         ele.textContent = t;
-        ele.style.backgroundColor = "red";
-        ele.style.left = "45px";
-        ele.style.top = "60px";
+        ele.style.backgroundColor = "ivory";
+        ele.style.left = "100px";
+        ele.style.top = "150px";
         ele.classList.add("drag-and-drop");
         
         wr.append(ele);
         
         alert(t);
-      }
-      
-      function drawTexts() {
-        for(var d in data) {
-          var text_1 = data[d]["text"];
-          var x_1 = data[d]["x"];
-          var y_1 = data[d]["y"];
-          var id_1 = data[d]["id"];
-          var ele = document.createElement("div");
-          //ele.style.position = "absolute";
-          ele.id = id_1;
-          ele.textContent = text_1;
-          ele.style.left = String(x_1)+"px";
-          ele.style.top = String(y_1)+"px";
-          ele.classList.add("drag-and-drop");
-          
-          wr.append(ele);
-          alert(d);
-        }
       }
       
       (function(){
