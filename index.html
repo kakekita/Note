@@ -101,9 +101,10 @@
         ele.style.top = "150px";
         ele.classList.add("drag-and-drop");
         
-        wr.append(ele);
-        
-        alert(t);
+        if(t != "") {
+          wr.append(ele);
+          alert(t);
+        }
         
         moveSettings();
       }
