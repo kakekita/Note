@@ -25,8 +25,10 @@
   </head>
   <body>
     <input type="file" id="file_Select">
-    <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw">決定</button>
-    <div id="wrapper"></div>
+    <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw" onclick="addText()">決定</button>
+    <div id="wrapper">
+      
+    </div>
     <script>
       var wr = document.getElementById("wrapper");
       var file_sel = document.getElementById("file_Select");
@@ -61,7 +63,7 @@
         let a=document.createElement("a");
         a.href=URL.createObjectURL(blob);
         var name = prompt("ファイル名","");
-        a.download = name+'.json';
+        a.download = name+'.txt';
         a.click();
         URL.revokeObjectURL(a.href);
       }
@@ -82,6 +84,21 @@
         };
       }
         
+      
+      function addText() {
+        var t = ta.value;
+        var ele = document.createElement("div");
+        ele.style.position = "absolute";
+        ele.id = String(wr.childElementCount);
+        ele.textContent = t;
+        ele.style.left = String(300)+"px";
+        ele.style.top = String(300)+"px";
+        ele.classList.add("drag-and-drop");
+        
+        wr.append(ele);
+        
+        alert(String(wr.childElementCount));
+      }
       
       function drawTexts() {
         for(var d in data) {
