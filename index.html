@@ -25,7 +25,7 @@
   </head>
   <body>
     <input type="file" id="file_Select">
-    <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw" onclick="addText()">決定</button>
+    <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw" onclick="addTexts()">決定</button>
     <div id="wrapper">
       
     </div>
@@ -79,16 +79,16 @@
         file_reader.readAsText(file);
         file_reader.onload=function(){
           //data = JSON.parse(file_reader.result);
-          wr.innerHTML = file_reader.result;
+          //wr.innerHTML = file_reader.result;
           //drawTexts();
         };
       }
         
       
-      function addText() {
+      function addTexts() {
         var t = ta.value;
         var ele = document.createElement("div");
-        ele.style.position = "absolute";
+        //ele.style.position = "absolute";
         ele.id = String(wr.childElementCount);
         ele.textContent = t;
         ele.style.backgroundColor = "red";
@@ -108,7 +108,7 @@
           var y_1 = data[d]["y"];
           var id_1 = data[d]["id"];
           var ele = document.createElement("div");
-          ele.style.position = "absolute";
+          //ele.style.position = "absolute";
           ele.id = id_1;
           ele.textContent = text_1;
           ele.style.left = String(x_1)+"px";
