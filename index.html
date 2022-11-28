@@ -85,6 +85,7 @@
           //data = JSON.parse(file_reader.result);
           wr.innerHTML = file_reader.result;
           //drawTexts();
+          moveSettings();
         };
       }
         
@@ -138,7 +139,7 @@
             //要素内の相対座標を取得
             x = event.pageX - this.offsetLeft;
             y = event.pageY - this.offsetTop;
-            alert(String(x)+","+String(y));
+            //alert(String(x)+","+String(y));
             //ムーブイベントにコールバック
             wr.addEventListener("mousemove", mmove, false);
             wr.addEventListener("touchmove", mmove, false);
