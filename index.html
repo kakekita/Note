@@ -7,6 +7,7 @@
         height: 450px;
         background-color: "lightgray";
         position: relative;
+        display: block
       }
       
       .drag-and-drop {
@@ -21,6 +22,11 @@
       
       .ln {
         display: block;
+      }
+      
+      html, body {
+        
+        zoom: 100%;
       }
       
     </style>
@@ -136,8 +142,8 @@
             y = event.pageY - this.offsetTop;
 
             //ムーブイベントにコールバック
-            document.body.addEventListener("mousemove", mmove, false);
-            document.body.addEventListener("touchmove", mmove, false);
+            wr.addEventListener("mousemove", mmove, false);
+            wr.addEventListener("touchmove", mmove, false);
         }
 
         //マウスカーソルが動いたときに発火
@@ -162,9 +168,9 @@
 
             //マウスボタンが離されたとき、またはカーソルが外れたとき発火
             drag.addEventListener("mouseup", mup, false);
-            document.body.addEventListener("mouseleave", mup, false);
+            wr.addEventListener("mouseleave", mup, false);
             drag.addEventListener("touchend", mup, false);
-            document.body.addEventListener("touchleave", mup, false);
+            wr.addEventListener("touchleave", mup, false);
 
         }
 
@@ -173,9 +179,9 @@
             var drag = document.getElementsByClassName("drag")[0];
 
             //ムーブベントハンドラの消去
-            document.body.removeEventListener("mousemove", mmove, false);
+            wr.removeEventListener("mousemove", mmove, false);
             drag.removeEventListener("mouseup", mup, false);
-            document.body.removeEventListener("touchmove", mmove, false);
+            wr.removeEventListener("touchmove", mmove, false);
             drag.removeEventListener("touchend", mup, false);
 
             //クラス名 .drag も消す
@@ -189,7 +195,7 @@
       }
 
       // イベントと関数を紐付け
-      //document.addEventListener('touchmove', disableScroll, { passive: false });
+      document.addEventListener('touchmove', disableScroll, { passive: false });
     </script>
   </body>
 </html>
