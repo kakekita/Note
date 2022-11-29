@@ -181,6 +181,21 @@
         };
       }
       
+      document.getElementById('sel_img').addEventListener('change', function (e) {
+        // 1枚だけ表示する
+        var file = e.target.files[0];
+
+        // ファイルのブラウザ上でのURLを取得する
+        var blobUrl = window.URL.createObjectURL(file);
+
+        // img要素に表示
+        var ele = document.createElement("img");
+        ele.src = blobUrl;
+        ele.style.left = "200px";
+        ele.style.top = "150px";
+        ele.classList.add("drag-and-drop");
+      });
+      
       function col_sel(e) {
         var ex2 = document.getElementsByName("ex2");
         
