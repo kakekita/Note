@@ -99,6 +99,10 @@
         margin: auto;
       }
       
+      .ln {
+        white-space: pre-wrap;
+      }
+      
     </style>
   </head>
   <body>
@@ -215,6 +219,7 @@
         ele.style.left = "100px";
         ele.style.top = "150px";
         ele.classList.add("drag-and-drop");
+        ele.classList.add("ln");
         
         if(t != "") {
           wr.append(ele);
