@@ -59,7 +59,7 @@
       <input type="radio" id="12" name="ex2"><label for="12">背景</label>
       <input type="radio" id="13" name="ex2"><label for="13">枠線</label>
     </div>
-    <input type="color" name="ex1" value="black">
+    <input type="color" name="ex1" id="col_Select" value="black">
     <div id="wrapper">
       
     </div>
@@ -67,8 +67,9 @@
       var wr = document.getElementById("wrapper");
       var file_sel = document.getElementById("file_Select");
       var ta = document.getElementById("textarea");
+      var col = document.getElementById("col_Select");
       var data = null;
-      
+      var cols = ["black", "lightgray", "black"];
       document.body.addEventListener('keydown', function(e) {
         if(e.ctrlKey) {
           if(e.shiftKey) {
@@ -80,6 +81,7 @@
       },false);
       
       file_sel.addEventListener("change", load);
+      col.addEventListener("change", col_sel);
       
       function save() {
         /*
@@ -118,7 +120,18 @@
           moveSettings();
         };
       }
-        
+      
+      function col_sel(e) {
+        var ex2 = document.getElementsByName("ex2");
+        var n = 0;
+        for(var ex of ex2) {
+          if(ex.checked) {
+            break;
+          }
+          n++;
+        }
+        cols[n] = e.target.value;
+      }
       
       function addTexts() {
         var t = ta.value;
@@ -126,7 +139,9 @@
         //ele.style.position = "absolute";
         ele.id = String(wr.childElementCount);
         ele.textContent = t;
-        ele.style.backgroundColor = "cornsilk";
+        ele.style.foregroundColor = cols[0];
+        ele.style.backgroundColor = cols[1];
+        ele.style.borderColor = cols[2];
         ele.style.left = "100px";
         ele.style.top = "150px";
         ele.classList.add("drag-and-drop");
