@@ -193,9 +193,12 @@
         ele.src = blobUrl;
         ele.style.left = "200px";
         ele.style.top = "150px";
-        ele.classList.add("drag-and-drop");
+        var ele2 = document.createElement("div");
+        ele2.id = String(wr.childElementCount);
+        ele2.classList.add("drag-and-drop");
         
-        wr.append(ele);
+        ele2.append(ele);
+        wr.append(ele2);
       });
       
       function col_sel(e) {
