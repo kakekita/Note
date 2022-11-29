@@ -60,7 +60,7 @@
       <input type="radio" id="13" name="ex2" onchange="radioSet(2)"><label for="13">枠線</label>
     </span>
     <span class="ex2">
-      <input type="checkbox" checked id="1" name="ex3"><label for="1">選択</label>
+      <input type="checkbox" checked id="21" name="ex3"><label for="1">選択</label>
     </span>
     <input type="color" name="ex1" id="col_Select" value="black">
     <div id="wrapper">
@@ -127,6 +127,7 @@
       
       function col_sel(e) {
         var ex2 = document.getElementsByName("ex2");
+        var id1 = document.getElementById("01");
         var n = 0;
         for(var ex of ex2) {
           if(ex.checked) {
@@ -135,7 +136,17 @@
           n++;
         }
         //alert(n);
-        cols[n] = e.target.value;
+        if(id1.checked) {
+          if(n == 0) {
+            sel_ele.style.color = e.target.value;
+          }else if(n == 1) {
+            sel_ele.style.backgroundColor = e.target.value;
+          }else if(n == 2) {
+            sel_ele.style.borderColor = e.target.value;
+          }
+        }else {
+          cols[n] = e.target.value;
+        }
       }
       
       function addTexts() {
