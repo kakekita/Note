@@ -54,11 +54,14 @@
   <body>
     <input type="file" id="file_Select">
     <textarea id="textarea" rows="5" cols="33"></textarea><button id="textDraw" onclick="addTexts()">決定</button>
-    <div class="ex2">
+    <span class="ex2">
       <input type="radio" checked id="11" name="ex2" onchange="radioSet(0)"><label for="11">文字</label>
       <input type="radio" id="12" name="ex2" onchange="radioSet(1)"><label for="12">背景</label>
       <input type="radio" id="13" name="ex2" onchange="radioSet(2)"><label for="13">枠線</label>
-    </div>
+    </span>
+    <span class="ex2">
+      <input type="checkbox" checked id="1" name="ex3"><label for="1">選択</label>
+    </span>
     <input type="color" name="ex1" id="col_Select" value="black">
     <div id="wrapper">
       
