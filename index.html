@@ -130,6 +130,7 @@
           }
           n++;
         }
+        alert(n);
         cols[n] = e.target.value;
       }
       
@@ -139,7 +140,7 @@
         //ele.style.position = "absolute";
         ele.id = String(wr.childElementCount);
         ele.textContent = t;
-        ele.style.foregroundColor = cols[0];
+        ele.style.color = cols[0];
         ele.style.backgroundColor = cols[1];
         ele.style.borderColor = cols[2];
         ele.style.left = "100px";
