@@ -50,6 +50,30 @@
           display: none;
       }
       
+      .ex3{
+          display: flex;
+      }
+      .ex3 label{
+          display: block;
+          width: 80px;
+          background: #c8eac3;
+          color: #000;
+          padding: 10px;
+          margin: 10px;
+          box-sizing: border-box;
+          text-align: center;
+          text-decoration: none;
+          border-radius: 30px;
+          cursor: pointer;
+      }
+      .ex3 input:checked+label{
+          background: #1a720d;
+          color: #FFF;
+      }
+      .ex3 input{
+          display: none;
+      }
+      
     </style>
   </head>
   <body>
@@ -60,7 +84,7 @@
       <input type="radio" id="12" name="ex2" onchange="radioSet(1)"><label for="12">背景</label>
       <input type="radio" id="13" name="ex2" onchange="radioSet(2)"><label for="13">枠線</label>
     </span>
-    <span class="ex2">
+    <span class="ex3">
       <input type="checkbox" checked id="21" name="ex3"><label for="1">選択</label>
     </span>
     <input type="color" name="ex1" id="col_Select" value="black">
