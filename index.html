@@ -67,9 +67,9 @@
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
           
           var dot = cursorLeft.split("")[obj.selectionEnd-1];
-          
-          if(dot == "・") {
-            cursorLeft = cursorLeft.slice(0,-2);
+          var t = cursorLeft.split("")[obj.selectionEnd-2];
+          if(dot == "・"&&t == "\t") {
+            cursorLeft = cursorLeft.replace("\t・","・");
             obj.value = cursorLeft+cursorRight;
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
