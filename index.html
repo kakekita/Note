@@ -2,10 +2,18 @@
 <html lang="ja">
   <head>
     <style>
-      
+      .note textarea {
+        outline: none;
+        font-size: 14px;
+        width: 60%;
+        height: 100%;
+      }
     </style>
   </head>
   <body>
+    <div id="note">
+      <textarea id="textarea1"></textarea>
+    </div>
     <script>
       function disableScroll(event) {
         event.preventDefault();
