@@ -6,7 +6,7 @@
         outline: none;
         font-size: 24px;
         border: none;
-        tab-size: 8;
+        tab-size: 12;
         width: 100%;
         height: 100%;
       }
@@ -37,19 +37,34 @@
 
         // タブキーを押したときのデフォルトの挙動を止める
         e.preventDefault();
+        
+        if(e.keyCode == 9) {
+          // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
+          var cursorPosition = obj.selectionStart;
+          var cursorLeft     = obj.value.substr( 0, cursorPosition );
+          var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
 
-        // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
-        var cursorPosition = obj.selectionStart;
-        var cursorLeft     = obj.value.substr( 0, cursorPosition );
-        var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
+          // テキストエリアの中身を、
+          // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
+          // という状態にする。
+          obj.value = cursorLeft+"\t・"+cursorRight;
 
-        // テキストエリアの中身を、
-        // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
-        // という状態にする。
-        obj.value = cursorLeft+" ".repeat(8)+"・"+cursorRight;
-
-        // カーソルの位置を入力したタブの後ろにする
-        obj.selectionEnd = obj.value.indexOf("・")+1;
+          // カーソルの位置を入力したタブの後ろにする
+          obj.selectionEnd = obj.value.indexOf("・")+1;
+        }
+        
+        if(e.keyCode == 8) {
+          var cursorPosition = obj.selectionStart;
+          var cursorLeft     = obj.value.substr( 0, cursorPosition );
+          var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
+          
+          var dot = cursorLeft.split("")[cursorPosition]
+          
+          if(dot == "・") {
+            cursorLeft = cursorLeft.slice(0,-2);
+            obj.value = cursorLeft+cursorRight;
+          }
+        }
       }
 
       // 対象となるテキストエリアにonkeydownイベントを追加する
