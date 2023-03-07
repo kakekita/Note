@@ -65,12 +65,13 @@
           var cursorLeft     = obj.value.substr( 0, cursorPosition );
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
           
-          
-          obj.value = cursorPosition;
-          var dot = cursorLeft.split("")[cursorPosition-1]
+          var dot = cursorLeft.split("")[obj.selectionEnd-1];
           
           if(dot == "・") {
             cursorLeft = cursorLeft.slice(0,-2);
+            obj.value = cursorLeft+cursorRight;
+          }else {
+            cursorLeft = cursorLeft.slice(0,-1);
             obj.value = cursorLeft+cursorRight;
           }
         }
