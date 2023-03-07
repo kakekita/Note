@@ -43,7 +43,7 @@
           var cursorPosition = obj.selectionStart;
           var cursorLeft     = obj.value.substr( 0, cursorPosition );
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
-          var [line,len] = getCursorLinePos(obj.value,obj.selectionEnd);
+          var [line,len] = getCursorLinePos(obj.selectionEnd,obj.value);
           // テキストエリアの中身を、
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
           // という状態にする。
@@ -55,7 +55,8 @@
             // カーソルの位置を入力したタブの後ろにする
             obj.selectionEnd = obj.value.indexOf("・")+1;
           }else {
-            lineSplit[line].replace("・","\t・");
+            lineSplit[line] = lineSplit[line].replace("・","\t・");
+            obj.value = lineSplit.join("\n");
             obj.selectionEnd = obj.selectionEnd+1;
           }
         }
