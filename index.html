@@ -58,6 +58,8 @@
           var cursorLeft     = obj.value.substr( 0, cursorPosition );
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
           
+          
+          obj.value = cursorPosition;
           var dot = cursorLeft.split("")[cursorPosition]
           
           if(dot == "・") {
