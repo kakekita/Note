@@ -43,14 +43,21 @@
           var cursorPosition = obj.selectionStart;
           var cursorLeft     = obj.value.substr( 0, cursorPosition );
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
-
+          var line = getCursorLinePos(obj.value,obj.selectionEnd);
           // テキストエリアの中身を、
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
           // という状態にする。
-          obj.value = cursorLeft+"\t・"+cursorRight;
-
-          // カーソルの位置を入力したタブの後ろにする
-          obj.selectionEnd = obj.value.indexOf("・")+1;
+          
+          var lineSplit = obj.value.split("");
+          
+          if(lineSplit[line].indexOf("・") == -1) {
+            obj.value = cursorLeft+"\t・"+cursorRight;
+            // カーソルの位置を入力したタブの後ろにする
+            obj.selectionEnd = obj.value.indexOf("・")+1;
+          }else {
+            lineSplit[line].replace("・","\t・");
+            obj.selectionEnd = obj.selectionEnd+1;
+          }
         }
         
         if(e.keyCode == 8) {
@@ -71,6 +78,23 @@
 
       // 対象となるテキストエリアにonkeydownイベントを追加する
       document.getElementById( "textarea1" ).onkeydown = function( e ){ OnTabKey( e, this ); }
+      
+      function getCursorLinePos(pos, text){
+        const lines = text.split("\n");
+        const charCounts = lines.map((line)=> line.length+1);
+        if(charCounts.length>0 && charCounts[0]>0){ charCounts[0]-=1; }
+        let cur = 0;
+        let sum = 0;
+        for(let i=0; i<charCounts.length; i++){
+          sum += charCounts[i];
+          if(pos <= sum){
+            cur = i;
+            break;
+          }
+        }
+        return [cur, lines.length];
+      }
+      
       
       function disableScroll(event) {
         event.preventDefault();
