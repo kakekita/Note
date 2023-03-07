@@ -48,7 +48,7 @@
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
           // という状態にする。
           
-          var lineSplit = obj.value.split("");
+          var lineSplit = obj.value.split("\n");
           
           if(lineSplit[line].indexOf("・") == -1) {
             obj.value = cursorLeft+"\t・"+cursorRight;
@@ -67,7 +67,7 @@
           
           
           obj.value = cursorPosition;
-          var dot = cursorLeft.split("")[cursorPosition]
+          var dot = cursorLeft.split("")[cursorPosition-1]
           
           if(dot == "・") {
             cursorLeft = cursorLeft.slice(0,-2);
