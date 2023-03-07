@@ -43,7 +43,7 @@
           var cursorPosition = obj.selectionStart;
           var cursorLeft     = obj.value.substr( 0, cursorPosition );
           var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
-          var line = getCursorLinePos(obj.value,obj.selectionEnd);
+          var [line,len] = getCursorLinePos(obj.value,obj.selectionEnd);
           // テキストエリアの中身を、
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
           // という状態にする。
