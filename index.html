@@ -46,7 +46,7 @@
         // テキストエリアの中身を、
         // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
         // という状態にする。
-        obj.value = cursorLeft+"            ・"+cursorRight;
+        obj.value = cursorLeft+" ".repeat(8)+"・"+cursorRight;
 
         // カーソルの位置を入力したタブの後ろにする
         obj.selectionEnd = cursorPosition+1;
