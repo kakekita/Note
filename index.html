@@ -49,7 +49,7 @@
         obj.value = cursorLeft+" ".repeat(8)+"・"+cursorRight;
 
         // カーソルの位置を入力したタブの後ろにする
-        obj.selectionEnd = cursorPosition+1;
+        obj.selectionEnd = obj.value.indexOf("・")+1;
       }
 
       // 対象となるテキストエリアにonkeydownイベントを追加する
