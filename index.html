@@ -41,13 +41,14 @@
         if(e.keyCode == 9) {
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
           var positions = getCursorPos();
-          var cursorPosition = positions[1];
+          var cursorPosition = positions[0];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
-          // テキストエリアの中身を、
-          // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
-          // という状態にする。
+          
+          if(!positions[2]) {
+             return;
+          }
           
           var lineSplit = obj.innerHTML.split("\n");
           
@@ -64,7 +65,7 @@
         
         if(e.keyCode == 8) {
           var positions = getCursorPos();
-          var cursorPosition = positions[1];
+          var cursorPosition = positions[0];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
@@ -72,8 +73,9 @@
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
           var lineSplit = obj.innerHTML.split("\n");
+          console.log(positions);
           if(!positions[2]) {
-            cursorLeft = cursorLeft.slice(positions[0],positions[1]);
+            cursorRight = cursorRight.slice(positions[1]-positions[0]);
             obj.innerHTML = cursorLeft+cursorRight;
             setFocus(positions[0]);
           }else if(dot == "・"&&t == "\t") {
@@ -89,10 +91,14 @@
         
         if(e.keyCode == 13) {
           var positions = getCursorPos();
-          var cursorPosition = positions[1];
+          var cursorPosition = positions[0];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
+          
+          if(!positions[2]) {
+             return;
+          }
           
           var lineSplit = obj.innerHTML.split("\n");
           if(lineSplit[line].indexOf("・") == -1) {
@@ -114,7 +120,7 @@
         var selection = document.getSelection();
         var range = selection.getRangeAt(0);
         var node = range.startContainer;
-        range.setStart( node, 0 );
+        range.setStart( node, range.startOffset );
         return [range.startOffset,range.endOffset,range.collapsed];
       }
 
