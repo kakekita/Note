@@ -68,8 +68,8 @@
           
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
-          if(dot == "・"&&t == "&#009;") {
-            cursorLeft = cursorLeft.replace("&#009;・","・");
+          if(dot == "・"&&t == "	") {
+            cursorLeft = cursorLeft.replace("	・","・");
             obj.innerHTML = cursorLeft+cursorRight;
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
