@@ -26,7 +26,7 @@
   </head>
   <body>
     <div id="note">
-      <pre contenteditable id="textarea1"></pre>
+      <span contenteditable id="textarea1"></span>
     </div>
     <script>
       
@@ -51,11 +51,11 @@
           var lineSplit = obj.innerHTML.split("\n");
           
           if(lineSplit[line].indexOf("・") == -1) {
-            obj.innerHTML = cursorLeft+"&#009;・"+cursorRight;
+            obj.innerHTML = cursorLeft+"<pre>&#009;</pre>・"+cursorRight;
             // カーソルの位置を入力したタブの後ろにする
             setFocus(obj.innerHTML.indexOf("・")+1);
           }else {
-            lineSplit[line] = lineSplit[line].replace("・","&#009;・");
+            lineSplit[line] = lineSplit[line].replace("・","<pre>&#009;</pre>・");
             obj.innerHTML = lineSplit.join("\n");
             setFocus(cursorPosition+1);
           }
@@ -68,8 +68,8 @@
           
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
-          if(dot == "・"&&t == "&#009;") {
-            cursorLeft = cursorLeft.replace("&#009;・","・");
+          if(dot == "・"&&t == "<pre>&#009;</pre>") {
+            cursorLeft = cursorLeft.replace("<pre>&#009;</pre>・","・");
             obj.innerHTML = cursorLeft+cursorRight;
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
