@@ -63,7 +63,7 @@
         if(e.keyCode == 8) {
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect()
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
-          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.value.length );
+          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
