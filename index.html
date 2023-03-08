@@ -20,7 +20,6 @@
       
       body {
         background-color: lightgray;
-        text-align: center;
       }
     </style>
   </head>
@@ -42,7 +41,7 @@
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect();
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
-          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.value.length );
+          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
           // テキストエリアの中身を、
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
