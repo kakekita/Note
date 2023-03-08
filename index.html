@@ -67,12 +67,15 @@
           var cursorPosition = positions[1];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
+          var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
           
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
+          var lineSplit = obj.innerHTML.split("\n");
+          
           if(dot == "・"&&t == "\t") {
-            cursorLeft = cursorLeft.replace("\t・","・");
-            obj.innerHTML = cursorLeft+cursorRight;
+            lineSplit[line] = lineSplit[line].replace("\t・","・");
+            obj.innerHTML = lineSplit.join("");
             setFocus(cursorPosition-1)
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
