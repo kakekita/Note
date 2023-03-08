@@ -91,9 +91,11 @@
           var lineSplit = obj.innerHTML.split("\n");
           if(lineSplit[line].indexOf("・") == -1) {
             obj.innerHTML = cursorLeft+"\n"+cursorRight;
+            setFocus(cursorPosition+1);
           }else {
             var tmp = lineSplit[line].substr(0,lineSplit[line].indexOf("・")+1);
             obj.innerHTML = cursorLeft+"\n"+tmp+cursorRight;
+            setFocus(obj.innerHTML.indexOf("・")+1);
           }
           
         }
