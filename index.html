@@ -89,7 +89,11 @@
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
           
           var lineSplit = obj.innerHTML.split("\n");
-          
+          if(lineSplit[line].indexOf("・") == -1) {
+            obj.innerHTML = cursorLeft+"\n"+cursorRight;
+          }else {
+            
+          }
           
         }
       }
