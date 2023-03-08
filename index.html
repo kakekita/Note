@@ -75,7 +75,7 @@
           
           if(dot == "・"&&t == "\t") {
             lineSplit[line] = lineSplit[line].replace("\t・","・");
-            obj.innerHTML = lineSplit.join("");
+            obj.innerHTML = lineSplit.join("\n");
             setFocus(cursorPosition-1)
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
