@@ -33,7 +33,7 @@
       function OnTabKey( e, obj ){
 
         // タブキーが押された時以外は即リターン
-        if( e.keyCode!=9 && e.keyCode != 8){ return; }
+        if( e.keyCode!=9 && e.keyCode != 8 && e.keyCode != 13 ){ return; }
 
         // タブキーを押したときのデフォルトの挙動を止める
         e.preventDefault();
@@ -80,6 +80,18 @@
             setFocus(cursorPosition-1)
           }
         }
+        
+        if(e.keyCode == 13) {
+          var positions = getCursorPos();
+          var cursorPosition = positions[1];
+          var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
+          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
+          var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
+          
+          var lineSplit = obj.innerHTML.split("\n");
+          
+          
+        }
       }
 
       // 対象となるテキストエリアにonkeydownイベントを追加する
@@ -91,7 +103,7 @@
         var node = range.startContainer;
         range.setStart( node, 0 );
         return [range.startOffset,range.endOffset,range.collapsed];
-      };
+      }
 
       function getCursorLinePos(pos, text){
         const lines = text.split("\n");
