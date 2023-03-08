@@ -41,7 +41,6 @@
         if(e.keyCode == 9) {
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect();
-          alert(cursorPosition)
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
@@ -64,7 +63,6 @@
         
         if(e.keyCode == 8) {
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect()
-          alert(cursorPosition)
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           
