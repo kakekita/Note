@@ -95,7 +95,7 @@
           }else {
             var tmp = lineSplit[line].substr(0,lineSplit[line].indexOf("・")+1);
             obj.innerHTML = cursorLeft+"\n"+tmp+cursorRight;
-            setFocus(obj.innerHTML.indexOf("・")+1);
+            setFocus(parseInt(cursorPosition+("\n"+tmp).length));
           }
           
         }
