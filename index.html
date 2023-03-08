@@ -54,11 +54,11 @@
           if(lineSplit[line].indexOf("・") == -1) {
             obj.innerHTML = cursorLeft+"\t・"+cursorRight;
             // カーソルの位置を入力したタブの後ろにする
-            obj.selectionEnd = obj.value.indexOf("・")+1;
+            setFocus(obj.value.indexOf("・")+1);
           }else {
             lineSplit[line] = lineSplit[line].replace("・","\t・");
             obj.innerHTML = lineSplit.join("\n");
-            obj.selectionEnd = obj.cursorPosition+1;
+            setFocus(cursorPosition+1);
           }
         }
         
@@ -98,6 +98,21 @@
         return [cur, lines.length];
       }
       
+      function setFocus(pos) {
+        var selection = window.getSelection();    //Selectionインスタンスの取得
+        var range = document.createRange();       //Rangeインスタンスを生成する
+
+        //選択範囲の開始・終了位置を設定する
+        let  el  =  document.getElementById("textarea1");
+        range.setStart(el, pos);  //①
+        range.setEnd(el, pos);    //②
+
+        //現在の選択範囲をすべて解除
+        selection.removeAllRanges(); 
+
+        //上の処理で作成した選択範囲(range)を追加する
+        selection.addRange(range);
+      }
       
       function disableScroll(event) {
         event.preventDefault();
