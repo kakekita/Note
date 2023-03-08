@@ -72,8 +72,11 @@
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
           var lineSplit = obj.innerHTML.split("\n");
-          
-          if(dot == "・"&&t == "\t") {
+          if(!positions[2]) {
+            cursorLeft = cursorLeft.slice(positions[0],positions[1]);
+            obj.innerHTML = cursorLeft+cursorRight;
+            setFocus(positions[0]);
+          }else if(dot == "・"&&t == "\t") {
             lineSplit[line] = lineSplit[line].replace("\t・","・");
             obj.innerHTML = lineSplit.join("\n");
             setFocus(cursorPosition-1)
