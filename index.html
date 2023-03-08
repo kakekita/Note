@@ -41,7 +41,7 @@
         if(e.keyCode == 9) {
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
           var positions = getCursorPos();
-          var cursorPosition = positions[0];
+          var cursorPosition = positions[1];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
@@ -64,7 +64,7 @@
         
         if(e.keyCode == 8) {
           var positions = getCursorPos();
-          var cursorPosition = positions[0];
+          var cursorPosition = positions[1];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           
@@ -73,9 +73,11 @@
           if(dot == "・"&&t == "\t") {
             cursorLeft = cursorLeft.replace("\t・","・");
             obj.innerHTML = cursorLeft+cursorRight;
+            setFocus(cursorPosition-1)
           }else {
             cursorLeft = cursorLeft.slice(0,-1);
             obj.innerHTML = cursorLeft+cursorRight;
+            setFocus(cursorPosition-1)
           }
         }
       }
@@ -84,7 +86,7 @@
       document.getElementById( "textarea1" ).onkeydown = function( e ){ OnTabKey( e, this ); }
       
       function getCursorPos() {
-        var selection = document.getElementById( "textarea1" ).contentWindow.document.getSelection();
+        var selection = document.getSelection();
         var range = selection.getRangeAt(0);
         var node = range.startContainer;
         range.setStart( node, 0 );
@@ -108,7 +110,7 @@
       }
       
       function setFocus(pos) {
-        const selection = window.getSelection()
+        const selection = document.getSelection()
         const range = document.createRange()
         range.setStart(document.getElementById( "textarea1" ).firstChild, pos)
         range.setEnd(document.getElementById( "textarea1" ).firstChild, pos)
