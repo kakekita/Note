@@ -100,19 +100,12 @@
       }
       
       function setFocus(pos) {
-        var selection = window.getSelection();    //Selectionインスタンスの取得
-        var range = document.createRange();       //Rangeインスタンスを生成する
-
-        //選択範囲の開始・終了位置を設定する
-        let  el  =  document.getElementById("textarea1");
-        range.setStart(el, pos);  //①
-        range.setEnd(el, pos);    //②
-
-        //現在の選択範囲をすべて解除
-        selection.removeAllRanges(); 
-
-        //上の処理で作成した選択範囲(range)を追加する
-        selection.addRange(range);
+        const selection = window.getSelection()
+        const range = document.createRange()
+        range.setStart(document.getElementById( "textarea1" ).firstChild, pos)
+        range.setEnd(document.getElementById( "textarea1" ).firstChild, pos)
+        selection.removeAllRanges()
+        selection.addRange(range)
       }
       
       function disableScroll(event) {
