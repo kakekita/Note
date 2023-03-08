@@ -42,19 +42,19 @@
         if(e.keyCode == 9) {
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect();
-          var cursorLeft     = obj.value.substr( 0, cursorPosition );
-          var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
-          var [line,len] = getCursorLinePos(cursorPosition,obj.value);
+          var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
+          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.value.length );
+          var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
           // テキストエリアの中身を、
           // 「取得しておいたカーソルの左側」+「タブ」+「取得しておいたカーソルの右側」
           // という状態にする。
           
-          var lineSplit = obj.value.split("\n");
+          var lineSplit = obj.innerHTML.split("\n");
           
           if(lineSplit[line].indexOf("・") == -1) {
             obj.innerHTML = cursorLeft+"\t・"+cursorRight;
             // カーソルの位置を入力したタブの後ろにする
-            setFocus(obj.value.indexOf("・")+1);
+            setFocus(obj.innerHTML.indexOf("・")+1);
           }else {
             lineSplit[line] = lineSplit[line].replace("・","\t・");
             obj.innerHTML = lineSplit.join("\n");
@@ -64,8 +64,8 @@
         
         if(e.keyCode == 8) {
           var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect()
-          var cursorLeft     = obj.value.substr( 0, cursorPosition );
-          var cursorRight    = obj.value.substr( cursorPosition, obj.value.length );
+          var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
+          var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.value.length );
           
           var dot = cursorLeft.split("")[cursorPosition-1];
           var t = cursorLeft.split("")[cursorPosition-2];
