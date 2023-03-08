@@ -84,7 +84,7 @@
       document.getElementById( "textarea1" ).onkeydown = function( e ){ OnTabKey( e, this ); }
       
       function getCursorPos() {
-        var selection = document.getElementById( "textarea1" ).getSelection();
+        var selection = document.getElementById( "textarea1" ).contentWindow.document.getSelection();
         var range = selection.getRangeAt(0);
         var node = range.startContainer;
         range.setStart( node, 0 );
