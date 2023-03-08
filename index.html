@@ -40,7 +40,8 @@
         
         if(e.keyCode == 9) {
           // 現在のカーソルの位置と、カーソルの左右の文字列を取得しておく
-          var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect();
+          var positions = getCursorPos();
+          var cursorPosition = positions[0];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           var [line,len] = getCursorLinePos(cursorPosition,obj.innerHTML);
@@ -62,7 +63,8 @@
         }
         
         if(e.keyCode == 8) {
-          var cursorPosition = window.getSelection().getRangeAt(0).getBoundingClientRect()
+          var positions = getCursorPos();
+          var cursorPosition = positions[0];
           var cursorLeft     = obj.innerHTML.substr( 0, cursorPosition );
           var cursorRight    = obj.innerHTML.substr( cursorPosition, obj.innerHTML.length );
           
@@ -81,6 +83,14 @@
       // 対象となるテキストエリアにonkeydownイベントを追加する
       document.getElementById( "textarea1" ).onkeydown = function( e ){ OnTabKey( e, this ); }
       
+      function getCursorPos() {
+        var selection = document.getElementById( "textarea1" ).getSelection();
+        var range = selection.getRangeAt(0);
+        var node = range.startContainer;
+        range.setStart( node, 0 );
+        return [range.startOffset,range.endOffset,range.collapsed];
+      };
+
       function getCursorLinePos(pos, text){
         const lines = text.split("\n");
         const charCounts = lines.map((line)=> line.length+1);
