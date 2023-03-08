@@ -92,7 +92,8 @@
           if(lineSplit[line].indexOf("・") == -1) {
             obj.innerHTML = cursorLeft+"\n"+cursorRight;
           }else {
-            
+            var tmp = lineSplit[line].substr(0,lineSplit[line].indexOf("・")+1);
+            obj.innerHTML = cursorLeft+"\n"+tmp+cursorRight;
           }
           
         }
