@@ -160,6 +160,13 @@
           const userSelection = window.getSelection();
           const selectedTextRange = userSelection.getRangeAt(0)
           selectedTextRange.surroundContents(span)
+        }else if(id == "ふりがな") {
+          var obj = document.getElementById( "textarea1" );
+          var positions = getCursorPos();
+          var cursorLeft     = obj.innerHTML.substr( 0, positions[0] );
+          var cursorRight    = obj.innerHTML.substr( positions[1], obj.innerHTML.length );
+          
+          obj.innerHTML = cursorLeft+"<ruby>"+obj.innerHTML.substr(positions[0],positions[1])+"<rt>"+prompt("よみがなを入力")+"</rt></ruby>"+cursorRight;
         }
       }
       
