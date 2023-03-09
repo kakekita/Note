@@ -19,6 +19,10 @@
         overflow-y: scroll;
       }
       
+      .center{
+        text-align:center;
+      }
+      
       body {
         background-color: lightgray;
       }
@@ -167,7 +171,8 @@
           var cursorLeft     = obj.innerHTML.substr( 0, positions[0] );
           var cursorRight    = obj.innerHTML.substr( positions[1], obj.innerHTML.length );
           
-          obj.innerHTML = cursorLeft+"<ruby>"+obj.innerHTML.substr(positions[0],positions[1])+"<rt>"+prompt("よみがなを入力")+"</rt></ruby>"+cursorRight;
+          obj.innerHTML = cursorLeft+"<ruby >"+obj.innerHTML.substr(positions[0],positions[1])+"<rt class='center'>"+prompt("よみがなを入力")+"</rt></ruby>"+cursorRight;
+          console.log(obj.innerHTML);
         }
       }
       
