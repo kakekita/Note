@@ -28,9 +28,7 @@
     <div id="note">
       <pre contenteditable id="textarea1"></pre>
     </div>
-    <input type="button" onclick="deco('bold')" value="太字">
-    <input type="button" onclick="deco('fontSize')" value="文字サイズ(3)">
-    <input type="button" onclick="deco('fontColor')" value="文字カラー(Red)">
+    <input type="button" onclick="deco(this.textContent)" value="重要">
     <script>
       
       function OnTabKey( e, obj ){
@@ -154,21 +152,11 @@
       
       function deco(id,n) {
         console.log(id);
-        if(id == "bold") {
+        if(id == "重要") {
           const span = document.createElement("span");
           span.style.fontWeight = 'bold'
-          const userSelection = window.getSelection();
-          const selectedTextRange = userSelection.getRangeAt(0)
-          selectedTextRange.surroundContents(span)
-        }else if(id == "fontSize") {
-          const span = document.createElement("span");
-          span.style.fontSize = 3;
-          const userSelection = window.getSelection();
-          const selectedTextRange = userSelection.getRangeAt(0)
-          selectedTextRange.surroundContents(span)
-        }else if(id == "fontColor") {
-          const span = document.createElement("span");
-          span.style.fontColor = "red";
+          span.style.fontSize = '26px'
+          span.style.color = 'red'
           const userSelection = window.getSelection();
           const selectedTextRange = userSelection.getRangeAt(0)
           selectedTextRange.surroundContents(span)
