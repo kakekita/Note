@@ -28,7 +28,8 @@
     <div id="note">
       <pre contenteditable id="textarea1"></pre>
     </div>
-    <input type="button" onclick="deco(this.textContent)" value="重要">
+    <input type="button" onclick="deco(this.value)" value="重要">
+    <input type="button" onclick="deco(this.value)" value="ふりがな">
     <script>
       
       function OnTabKey( e, obj ){
