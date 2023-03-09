@@ -27,6 +27,9 @@
   <body>
     <div id="note">
       <pre contenteditable id="textarea1"></pre>
+      <input type="button" onclick="deco('bold')" value="太字">
+      <input type="button" onclick="deco('fontSize')" value="文字サイズ(3)">
+      <input type="button" onclick="deco('fontColor')" value="文字カラー(Red)">
     </div>
     <script>
       
@@ -147,6 +150,28 @@
         range.setEnd(document.getElementById( "textarea1" ).firstChild, pos)
         selection.removeAllRanges()
         selection.addRange(range)
+      }
+      
+      function deco(id,n) {
+        if(id == "bold") {
+          const span = document.createElement("span");
+          span.style.fontWeight = 'bold'
+          const userSelection = window.getSelection();
+          const selectedTextRange = userSelection.getRangeAt(0)
+          selectedTextRange.surroundContents(span)
+        }else if(id == "fontSize") {
+          const span = document.createElement("span");
+          span.style.fontSize = 3;
+          const userSelection = window.getSelection();
+          const selectedTextRange = userSelection.getRangeAt(0)
+          selectedTextRange.surroundContents(span)
+        }else if(id == "fontColor") {
+          const span = document.createElement("span");
+          span.style.fontColor = "red";
+          const userSelection = window.getSelection();
+          const selectedTextRange = userSelection.getRangeAt(0)
+          selectedTextRange.surroundContents(span)
+        }
       }
       
       function disableScroll(event) {
